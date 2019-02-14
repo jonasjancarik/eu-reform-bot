@@ -16,15 +16,14 @@ var phrases = [
   { claim: 'EU must be reformed', reply: 'Reformed how exactly?' }
 ]
 
-// var trackQuery = '"EU needs reform" OR "EU must be reformed"'
+// build track query from claims
 var claims = []
-
 phrases.forEach(phrase => {
   claims.push(phrase.claim)
 })
-
 var trackQuery = claims.join(',')
 
+// connect to the stream
 connectToStream('statuses/filter', { track: trackQuery })
 
 function connectToStream (endpoint, parameters) {
@@ -53,7 +52,7 @@ function connectToStream (endpoint, parameters) {
       } else if (error.message === 'Unexpected token E in JSON at position 0' && error.source === 'Exceeded connection limit for user') {
         console.log(error.source)
       } else {
-        debugger
+        // debugger
         throw error
       }
     })
