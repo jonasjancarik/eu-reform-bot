@@ -23,6 +23,8 @@ phrases.forEach(phrase => {
 })
 var trackQuery = claims.join(',')
 
+// debugger
+
 // connect to the stream
 connectToStream('statuses/filter', { track: trackQuery })
 
@@ -60,7 +62,8 @@ function connectToStream (endpoint, parameters) {
 }
 
 function reaction (event) {
-  if (event.user.screen_name !== 'jonworth') {
+  if (!event.retweeted_status) {
+  // if (event.retweeted_status.id_str !== '1095726057993453568') {
     var response = ''
 
     // match phrase
