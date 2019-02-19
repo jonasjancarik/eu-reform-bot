@@ -75,11 +75,12 @@ function reaction (event) {
     })
 
     if (response) {
-      client.post('statuses/update', { status: response, in_reply_to_status_id: event.id_str, auto_populate_reply_metadata: true }, function (error, tweet, response) {
-        if (error) throw console.log(error)
-        console.log('https://twitter.com/' + event.user.screen_name + '/status/' + event.id_str + ' ' + event.text)
-        // console.log(response);  // Raw response object.
-      })
+      setTimeout(() => { // just a little timeout
+        client.post('statuses/update', { status: response, in_reply_to_status_id: event.id_str, auto_populate_reply_metadata: true }, function (error, tweet, response) {
+          if (error) console.log(error)
+          console.log('https://twitter.com/' + event.user.screen_name + '/status/' + event.id_str + ' ' + event.text)
+        })
+      }, 10000)
     }
   }
 }
