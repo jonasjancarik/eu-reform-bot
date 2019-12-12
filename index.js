@@ -16,6 +16,10 @@ var phrases = [
   { claim: 'EU must be reformed', reply: 'Reformed how exactly?' }
 ]
 
+var account_blacklist = [
+  'Democracy_Anon'
+]
+
 // build track query from claims
 var claims = []
 phrases.forEach(phrase => {
@@ -62,8 +66,7 @@ function connectToStream (endpoint, parameters) {
 }
 
 function reaction (event) {
-  if (!event.retweeted_status) {
-  // if (event.retweeted_status.id_str !== '1095726057993453568') {
+  if (!event.retweeted_status && !account_blacklist.includes(event.user.screen_name)) {
     var response = ''
 
     // match phrase
