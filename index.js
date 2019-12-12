@@ -16,7 +16,7 @@ var phrases = [
   { claim: 'EU must be reformed', reply: 'Reformed how exactly?' }
 ]
 
-var account_blacklist = [
+var accountBlacklist = [
   'Democracy_Anon'
 ]
 
@@ -66,7 +66,7 @@ function connectToStream (endpoint, parameters) {
 }
 
 function reaction (event) {
-  if (!event.retweeted_status && !account_blacklist.includes(event.user.screen_name)) {
+  if (!event.retweeted_status && !accountBlacklist.includes(event.user.screen_name)) {
     var response = ''
 
     // match phrase
